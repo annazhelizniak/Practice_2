@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Practice_2"
         xmlns:views="clr-namespace:Practice_2.Views"
         mc:Ignorable="d"
-        Title="MainWindow" Height="420" Width="350" MinHeight="410" MinWidth="300">
+        Title="MainWindow" Height="420" Width="350" MinHeight="410" MinWidth="300" IsEnabled="{Binding IsEnabled, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
     <Grid>
         <views:MainControl Loaded="MainControl_Loaded"></views:MainControl>
     </Grid>

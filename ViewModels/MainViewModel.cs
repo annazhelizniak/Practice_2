@@ -69,10 +69,8 @@ namespace Practice_2.ViewModels
             {
                 _user.DateOfBirth = value;
                 IsEnabled = false;
-                NotifyPropertyChanged("IsEnabled");
                 Task.Run(async () => await renewData());
                 IsEnabled = true;
-                NotifyPropertyChanged("IsEnabled");
             }
         }
 
@@ -139,7 +137,6 @@ namespace Practice_2.ViewModels
         {
             get
             {
-                Thread.Sleep(5000);
                 if (_user.IsValid())
                 {
                     return _user.ChineseSign;
@@ -198,6 +195,8 @@ namespace Practice_2.ViewModels
             await Task.Run(() => Age);
             await Task.Run(() => WesternZodiacSign);
             await Task.Run(() => ChineseZodiacSign);
+            await Task.Run(() => IsAdult);
+            await Task.Run(() => IsBirthday);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
