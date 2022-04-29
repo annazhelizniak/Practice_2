@@ -14,7 +14,7 @@ namespace Practice_2.ViewModels
     class MainViewModel : INotifyPropertyChanged
     {
         #region Fields
-        private Person _user=new Person(null,null,null);
+        private Person _user=new Person(null, null, DateTime.Now, null);
         private RelayCommand<object> _selectDateCommand;
         private bool _isEnabled=true;
         #endregion
@@ -45,7 +45,10 @@ namespace Practice_2.ViewModels
 
                 return "---";
             }
-            set { _user.Surname = value; }
+            set
+            {
+                _user.Surname = value;
+            }
         }
 
         public string Email
@@ -59,7 +62,17 @@ namespace Practice_2.ViewModels
 
                 return "---";
             }
-            set { _user.Email = value; }
+            set
+            {
+                try
+                {
+                    _user.Email = value;
+                }
+                catch (WrongEmailException wrongEmailException)
+                {
+                    MessageBox.Show(wrongEmailException.Message + wrongEmailException.Email);
+                }
+            }
         }
 
         public DateTime DateOfBirth
@@ -67,10 +80,21 @@ namespace Practice_2.ViewModels
             get { return _user.DateOfBirth; }
             set
             {
-                _user.DateOfBirth = value;
-                IsEnabled = false;
-                Task.Run(async () => await renewData());
-                IsEnabled = true;
+                try
+                {
+                    _user.DateOfBirth = value;
+                    IsEnabled = false;
+                    Task.Run(async () => await renewData());
+                    IsEnabled = true;
+                }
+                catch(DateOfBirthInFutureException dateOfBirthInFutureException)
+                {
+                    MessageBox.Show(dateOfBirthInFutureException.Message+dateOfBirthInFutureException.DateOfBirth.ToString("d"));
+                }
+                catch (DateOfBirthInPastException dateOfBirthInPastException)
+                {
+                    MessageBox.Show(dateOfBirthInPastException.Message + dateOfBirthInPastException.DateOfBirth.ToString("d"));
+                }
             }
         }
 
@@ -176,17 +200,9 @@ namespace Practice_2.ViewModels
             NotifyPropertyChanged("ChineseZodiacSign");
             NotifyPropertyChanged("IsAdult");
             NotifyPropertyChanged("IsBirthday");
-            if (!_user.IsValid())
+            if (_user.IsBirthday) 
             {
-                MessageBox.Show("Некоректно обрано дату народження!");
-            }
-            else
-            {
-                if (_user.IsBirthday)
-                {
-                    MessageBox.Show("З Днем народження!");
-                }
-
+                MessageBox.Show("З Днем народження!");
             }
         }
 

@@ -57,7 +57,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Tools\DateOfBirthInFutureException.cs" />
+    <Compile Include="Tools\DateOfBirthInPastException.cs" />
     <Compile Include="Tools\RelayCommand.cs" />
+    <Compile Include="Tools\WrongEmailException.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="Views\MainControl.xaml.cs">
       <DependentUpon>MainControl.xaml</DependentUpon>

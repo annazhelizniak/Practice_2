@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Practice_2.Tools;
 
 namespace Practice_2.Models
 {
@@ -39,11 +40,6 @@ namespace Practice_2.Models
             _email = email;
         }
 
-        public Person()
-        {
-
-        }
-
 
         #endregion
         #region Properties
@@ -57,13 +53,26 @@ namespace Practice_2.Models
         public string Email
         {
             get { return _email; }
-            set { _email = value; }
+            set
+            {
+                if (!value.EndsWith("@gmail.com")) 
+                    throw new WrongEmailException("Неправильний формат електронної адреси! : ", value);
+                _email = value;
+            }
         }
 
         public DateTime DateOfBirth
         {
             get { return _dateOfBirth; }
-            set { _dateOfBirth = value; }
+            set
+            {
+                if (value > DateTime.Now)
+                    throw new DateOfBirthInFutureException("Людина з такою датою народження ще не народилась! : ", value);
+                if (value.Year < 1886)
+                    throw new DateOfBirthInPastException("Не можна створити людину до 1886 року народження! : ", value);
+                _dateOfBirth = value;
+
+            }
         }
 
         public string Surname
