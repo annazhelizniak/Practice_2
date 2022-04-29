@@ -181,14 +181,6 @@ namespace Practice_2.Models
             return age;
         }
 
-
-        public bool IsValid()
-        {
-            //check whether person's age is appropriate 
-            if (Age() < 0 || Age() > 135) return false;
-            return true;
-        }
-
         #endregion
     }
 }

@@ -24,12 +24,7 @@ namespace Practice_2.ViewModels
         {
             get
             {
-                if (_user.IsValid())
-                {
-                    return _user.Name;
-                }
-
-                return "---";
+                return _user.Name;
             }
             set { _user.Name = value; }
         }
@@ -37,13 +32,8 @@ namespace Practice_2.ViewModels
         public string Surname
         {
             get
-            {
-                if (_user.IsValid())
-                {
-                    return _user.Surname;
-                }
-
-                return "---";
+            { 
+                return _user.Surname;
             }
             set
             {
@@ -55,12 +45,7 @@ namespace Practice_2.ViewModels
         {
             get
             {
-                if (_user.IsValid())
-                {
-                    return _user.Email;
-                }
-
-                return "---";
+                return _user.Email;
             }
             set
             {
@@ -102,12 +87,7 @@ namespace Practice_2.ViewModels
         {
             get
             {
-                if (_user.IsValid())
-                {
-                    return _user.Age().ToString();
-                }
-
-                return "---";
+                return _user.Age().ToString();
             }
             set { _ = _user.Age(); }
         }
@@ -116,14 +96,12 @@ namespace Practice_2.ViewModels
         {
             get
             {
-                if(_user.IsValid())
-                    if (_user.IsAdult)
-                    {
-                        return "Так";
-                    }
-                    else return "Ні";
+                if (_user.IsAdult)
+                {
+                    return "Так";
+                }
+                else return "Ні";
 
-                return "---";
             }
             set{}
         }
@@ -132,14 +110,13 @@ namespace Practice_2.ViewModels
         {
             get
             {
-                if (_user.IsValid())
-                    if (_user.IsBirthday)
-                    {
-                        return "Так";
-                    }
-                    else return "Ні";
+                if (_user.IsBirthday)
+                {
+                    return "Так";
+                }
+                else return "Ні";
 
-                return "---";
+
             }
             set{}
         }
@@ -148,12 +125,7 @@ namespace Practice_2.ViewModels
         {
             get
             {
-                if (_user.IsValid())
-                {
-                    return _user.SunSign;
-                }
-
-                return "---";
+                return _user.SunSign;
             }
             set { _ = _user.SunSign; }
         }
@@ -161,12 +133,7 @@ namespace Practice_2.ViewModels
         {
             get
             {
-                if (_user.IsValid())
-                {
-                    return _user.ChineseSign;
-                }
-
-                return "---";
+                return _user.ChineseSign;
             }
             set { _ = _user.ChineseSign; }
         }
