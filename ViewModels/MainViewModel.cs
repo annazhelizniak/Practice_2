@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -52,10 +53,11 @@ namespace Practice_2.ViewModels
                 try
                 {
                     _user.Email = value;
+                    MailAddress ma = new MailAddress(_user.Email);
                 }
-                catch (WrongEmailException wrongEmailException)
+                catch (FormatException wrongEmailException)
                 {
-                    MessageBox.Show(wrongEmailException.Message + wrongEmailException.Email);
+                    MessageBox.Show("Неправильна електронна адреса");
                 }
             }
         }

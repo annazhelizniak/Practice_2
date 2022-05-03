@@ -55,8 +55,6 @@ namespace Practice_2.Models
             get { return _email; }
             set
             {
-                if (!value.EndsWith("@gmail.com")) 
-                    throw new WrongEmailException("Неправильний формат електронної адреси! : ", value);
                 _email = value;
             }
         }
